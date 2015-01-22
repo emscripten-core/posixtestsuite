@@ -29,7 +29,7 @@ int i[3], j;
 
 /* Cleanup function that the thread executes when it is canceled.  So if
  * cleanup_flag is 1, it means that the thread was canceled. */
-void a_cleanup_func1()	
+void a_cleanup_func1(void *dummy)	
 {
 	i[j]=1;
 	j++;
@@ -38,7 +38,7 @@ void a_cleanup_func1()
 
 /* Cleanup function that the thread executes when it is canceled.  So if
  * cleanup_flag is 1, it means that the thread was canceled. */
-void a_cleanup_func2()	
+void a_cleanup_func2(void *dummy)	
 {
 	i[j]=2;
 	j++;
@@ -47,7 +47,7 @@ void a_cleanup_func2()
 
 /* Cleanup function that the thread executes when it is canceled.  So if
  * cleanup_flag is 1, it means that the thread was canceled. */
-void a_cleanup_func3()	
+void a_cleanup_func3(void *dummy)	
 {
 	i[j]=3;
 	j++;
