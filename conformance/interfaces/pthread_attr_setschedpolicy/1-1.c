@@ -51,5 +51,7 @@ int main()
 
 	pthread_join(thread, &status);
 	pthread_attr_destroy(&attr);
+
+	printf("Test PASS\n");
 	return PTS_PASS;	
 }
