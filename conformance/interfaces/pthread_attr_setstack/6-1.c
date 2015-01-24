@@ -26,7 +26,7 @@
 #define FUNCTION "pthread_attr_setstack"
 #define ERROR_PREFIX "unexpected error: " FUNCTION " " TEST ": "
 
-#define STACKSIZE PTHREAD_STACK_MIN - sysconf(_SC_PAGE_SIZE)
+#define STACKSIZE (PTHREAD_STACK_MIN > sysconf(_SC_PAGE_SIZE)) ? (PTHREAD_STACK_MIN - sysconf(_SC_PAGE_SIZE)) : (PTHREAD_STACK_MIN/2)
 
 static void *stack_addr;
 size_t stack_size;
