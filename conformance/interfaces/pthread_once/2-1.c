@@ -112,6 +112,7 @@ int main( int argc, char * argv[] )
 		FAILED( "The initializer function did not execute" );
 	}
 
+	printf("Test PASS\n");
 	PASSED;
 }
 

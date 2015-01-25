@@ -177,6 +177,7 @@ int main( int argc, char * argv[] )
 		UNRESOLVED( ret, "Failed to unlock mutex in initializer" );
 	}
 
+	printf("Test PASS\n");
 	PASSED;
 }
 
