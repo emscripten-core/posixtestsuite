@@ -62,6 +62,11 @@ int main()
 	int pid;
 	int rc;
 
+#ifdef __EMSCRIPTEN__
+	printf("Test SKIPPED: Emscripten does not support shm_open and shm_unlink.\n");
+	exit(0);
+#endif
+
 	/* Create shared object */
 	shm_unlink(shm_name);
 	shm_fd = shm_open(shm_name, O_RDWR|O_CREAT|O_EXCL, S_IRUSR|S_IWUSR);

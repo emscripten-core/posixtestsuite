@@ -47,6 +47,11 @@ int main()
 	  return PTS_UNSUPPORTED;	
 	#endif
 
+#ifdef __EMSCRIPTEN__
+	printf("Test SKIPPED: Emscripten does not support shm_open and shm_unlink.\n");
+	exit(0);
+#endif
+
 	int pshared = PTHREAD_PROCESS_SHARED;
 	
 	char shm_name[] = "tmp_pthread_spinlock_getpshared";

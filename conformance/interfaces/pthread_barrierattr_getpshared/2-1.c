@@ -61,7 +61,12 @@ int main()
 	static pthread_barrier_t* barrier;
 	pthread_barrierattr_t ba;
 	int	pshared = PTHREAD_PROCESS_SHARED;
-	
+
+#ifdef __EMSCRIPTEN__
+	printf("Test SKIPPED: Emscripten does not support shm_open and shm_unlink.\n");
+	exit(0);
+#endif
+
 	char 	shm_name[] = "tmp_pthread_barrierattr_getpshared";
 	int 	shm_fd;
 	int 	pid;

@@ -50,6 +50,11 @@ int main()
 
 	pthread_rwlockattr_t rwla;
 	int pshared = PTHREAD_PROCESS_SHARED;
+
+#ifdef __EMSCRIPTEN__
+	printf("Test SKIPPED: Emscripten does not support shm_open and shm_unlink.\n");
+	exit(0);
+#endif
 	
 	char shm_name[] = "tmp_pthread_rwlock_getpshared";
 	int shm_fd;
