@@ -10,8 +10,13 @@
   *The constant PTHREAD_ONCE_INIT is defined in the pthread.h header.
   */
 
+#include <stdio.h>
 #include <pthread.h>
 
 pthread_once_t dummy = PTHREAD_ONCE_INIT;
 
-
+int main()
+{
+	printf("Test PASSED\n");
+	return 0;
+}
