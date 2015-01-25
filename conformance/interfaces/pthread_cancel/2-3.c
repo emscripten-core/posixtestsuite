@@ -46,7 +46,7 @@ void destructor(void *tmp)
 /*
    Cleanup Handler for the Thread 
  */
-void cleanup_function()
+void cleanup_function(void *unused)
 {
 	clock_gettime(CLOCK_REALTIME, &cleanup_time);
 	cleanup_flag = 1;
