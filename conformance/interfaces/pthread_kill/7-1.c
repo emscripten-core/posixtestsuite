@@ -29,5 +29,6 @@ int main()
 		return PTS_FAIL;
 	}
 
+	printf("Test PASS\n");
 	return PTS_PASS;
 }

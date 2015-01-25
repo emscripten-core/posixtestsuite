@@ -58,6 +58,7 @@ int main()
 	
  	if (pthread_kill(invalid_tid, 0) == ESRCH) {
 		printf("pthread_kill() returns ESRCH.\n");
+		printf("Test PASS\n");
 		return PTS_PASS;
 	}
 
