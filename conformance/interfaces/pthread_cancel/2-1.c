@@ -28,7 +28,7 @@ int cleanup_flag;		/* Made global so that the cleanup function
 
 /* A cleanup function that sets the cleanup_flag to 1, meaning that the
  * cleanup function was reached. */ 
-void a_cleanup_func()	
+void a_cleanup_func(void *unused)
 {
 	cleanup_flag=1;
 	sem=0;

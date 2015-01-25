@@ -46,7 +46,7 @@ struct timespec main_time, cleanup_time;
 /* A cleanup function that sets the cleanup_flag to 1, meaning that the
  * cleanup function was reached. 
  */ 
-void a_cleanup_func()	
+void a_cleanup_func(void *unused)
 {
 	clock_gettime(CLOCK_REALTIME, &cleanup_time);
 	cleanup_flag = 1;
