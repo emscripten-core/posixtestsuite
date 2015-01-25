@@ -29,10 +29,9 @@
 int init_flag;
 
 /* The init function that pthread_once calls */
-void *an_init_func()
+void an_init_func()
 {
 	init_flag++;
-	return NULL;
 }
 
 int main()
