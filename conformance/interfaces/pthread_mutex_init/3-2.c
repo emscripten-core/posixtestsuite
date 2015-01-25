@@ -328,6 +328,7 @@ int main(int argc, char *argv[])
 	
 	if ((tab_res[0][1] == 1) && (tab_res[0][2] != tab_res[1][2]))
 	{ FAILED("The locks returned different error codes."); }
-		
+
+	printf("Test PASS\n");
 	PASSED;
 } 
