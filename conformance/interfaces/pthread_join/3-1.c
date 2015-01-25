@@ -31,7 +31,7 @@ int cleanup_flag;	/* Flag to indicate the thread's cleanup handler was called */
 
 /* Cleanup function that the thread executes when it is canceled.  So if
  * cleanup_flag is 1, it means that the thread was canceled. */
-void a_cleanup_func()	
+void a_cleanup_func(void *unused)
 {
 	cleanup_flag=1;
 	return;
