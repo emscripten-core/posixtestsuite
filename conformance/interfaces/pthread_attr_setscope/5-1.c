@@ -30,7 +30,7 @@
 int main()
 {
 	if (1) {
-		printf("Untested for now, cannot find a unsupported inheritsched value\n");	
+		printf("Test SKIPPED: Untested for now, cannot find a unsupported inheritsched value\n");
 		return PTS_UNTESTED;
 	}
 	int                   rc=0;
