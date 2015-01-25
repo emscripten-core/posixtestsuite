@@ -210,6 +210,11 @@ int main(int argc, char * argv[])
 	pthread_t child_th[NCHILDREN];
 	
 	long pshared, monotonic, cs, mf;
+
+#ifdef __EMSCRIPTEN__
+	printf("Test SKIPPED: lacking necessary mmap() support in Emscripten.\n");
+	exit(0);
+#endif
 	
 	output_init();
 	pshared = sysconf(_SC_THREAD_PROCESS_SHARED);

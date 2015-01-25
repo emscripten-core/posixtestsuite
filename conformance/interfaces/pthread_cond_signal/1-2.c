@@ -262,6 +262,11 @@ int main (int argc, char * argv[])
 	
 	testdata_t alternativ;
 	
+#ifdef __EMSCRIPTEN__
+	printf("Test SKIPPED: lacking necessary mmap() support in Emscripten.\n");
+	exit(0);
+#endif
+
 	output_init();
 	
 	/* check the system abilities */
