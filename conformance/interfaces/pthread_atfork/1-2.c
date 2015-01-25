@@ -191,6 +191,11 @@ int main( int argc, char * argv[] )
 {
 	int ret;
 
+#ifdef __EMSCRIPTEN__
+	printf("Test SKIPPED: multiple processes and fork() is not supported in Emscripten.\n");
+	exit(0);
+#endif
+
 	/* Initialize output */
 	output_init();
 
