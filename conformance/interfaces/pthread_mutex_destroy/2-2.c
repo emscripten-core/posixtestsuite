@@ -197,6 +197,7 @@ int main (int argc, char * argv[])
 		if (ret != 0)  {  UNRESOLVED(ret, "Failed to destroy a mutex attribute object");  }
 	}
 	
+	printf("Test PASS\n");
 	PASSED;
 }
 
