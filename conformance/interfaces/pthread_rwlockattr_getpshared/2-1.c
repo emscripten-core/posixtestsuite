@@ -32,6 +32,7 @@
 #include <sys/mman.h>
 #include <fcntl.h>
 #include <sys/wait.h>
+#include <stdlib.h>
 #include "posixtest.h"
 
 struct shmstruct{

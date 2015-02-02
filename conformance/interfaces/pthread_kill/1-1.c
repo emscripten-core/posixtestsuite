@@ -39,6 +39,7 @@
 #include <signal.h>
 #include <errno.h>
 #include <unistd.h>
+#include <stdlib.h>
 #include "posixtest.h"
 
 # define INTHREAD 0
