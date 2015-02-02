@@ -91,5 +91,6 @@ int main()
 	/* Wait for thread to end execution */	
 	pthread_join(child_thread, NULL);
 	
+	printf("Test PASS\n");
 	return PTS_PASS;
 }
