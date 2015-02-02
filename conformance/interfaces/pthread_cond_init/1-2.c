@@ -177,6 +177,11 @@ int do_cs_test(void)
 	struct timespec diff;
 	char sens=0;
 	
+#ifdef __EMSCRIPTEN__
+	printf("Test SKIPPED: clock_settime() is not supported in Emscripten.\n");
+	exit(0);
+#endif
+
 	/* We are going to initialize the cond vars and the mutexes */
 	dtN.pmtx = &mtxN;
 	dtD.pmtx = &mtxD;
