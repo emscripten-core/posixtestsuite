@@ -333,6 +333,7 @@ int main( int argc, char *argv[] )
 		UNRESOLVED( ret, "Failed to join the thread" );
 	}
 
+	printf("Test PASS\n");
 	PASSED;
 }
 
