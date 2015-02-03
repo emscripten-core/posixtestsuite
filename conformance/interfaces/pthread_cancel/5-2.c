@@ -239,6 +239,11 @@ int main ( int argc, char * argv[] )
 
 	struct sigaction sa;
 
+#ifdef __EMSCRIPTEN__
+       printf("Test SKIPPED: signals are not supported in Emscripten.\n");
+       exit(0);
+#endif
+
 	/* Initialize output routine */
 	output_init();
 
