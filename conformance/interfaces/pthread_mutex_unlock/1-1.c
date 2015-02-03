@@ -36,18 +36,21 @@ int main()
 
 	/* Release the mutex using pthread_mutex_unlock() */
 	if((rc=pthread_mutex_unlock(&mutex)) != 0) {
+        	fprintf(stderr,"pthread_mutex_unlock 1 failed!\n");
         	printf("Test FAILED\n");
 		return PTS_FAIL;
 	}
     		
 	/* Get the mutex using pthread_mutex_trylock() */
 	if((rc=pthread_mutex_trylock(&mutex)) != 0) {
+        	fprintf(stderr,"pthread_mutex_trylock failed!\n");
         	printf("Test FAILED\n");
 		return PTS_FAIL;
 	}
 
 	/* Release the mutex using pthread_mutex_unlock() */
 	if((rc=pthread_mutex_unlock(&mutex)) != 0) {
+        	fprintf(stderr,"pthread_mutex_unlock 2 failed!\n");
         	printf("Test FAILED\n");
 		return PTS_FAIL;
 	}
