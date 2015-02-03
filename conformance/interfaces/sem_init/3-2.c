@@ -98,6 +98,11 @@ int main( int argc, char * argv[] )
 	void *buf;
 	sem_t * sem;
 
+#ifdef __EMSCRIPTEN__
+	printf("Test SKIPPED: Emscripten does not support shm_open and shm_unlink.\n");
+	exit(0);
+#endif
+
 	/* Initialize output */
 	output_init();
 
