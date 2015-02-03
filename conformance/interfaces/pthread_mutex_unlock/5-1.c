@@ -160,6 +160,7 @@ int main(int argc, char * argv[])
 	if (ret != 0)
 	{  UNRESOLVED(ret, "Mutex unlock failed. Mutex got corrupted?");  }
 
+	printf("Test PASS\n");
 	PASSED;
 }
 #else /* WITHOUT_XOPEN */

@@ -187,7 +187,8 @@ int main (int argc, char * argv[])
 		ret = pthread_mutexattr_destroy(&ma[i]);
 		if (ret != 0)  {  UNRESOLVED(ret, "Failed to destroy a mutex attribute object");  }
 	}
-	
+
+	printf("Test PASS\n");
 	PASSED;
 }
 
