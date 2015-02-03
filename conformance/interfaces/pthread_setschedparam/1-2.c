@@ -223,6 +223,7 @@ int main( int argc, char *argv[] )
 		UNRESOLVED( ret, "barrier destroy failed" );
 	}
 
+	printf("Test PASS\n");
 	PASSED;
 }
 

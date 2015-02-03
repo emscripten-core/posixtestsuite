@@ -188,10 +188,7 @@ int main( int argc, char *argv[] )
 		UNRESOLVED( ret, "Failed to join the thread" );
 	}
 
-#if VERBOSE > 0
 	output( "Test PASSED.\n" );
-
-#endif
 
 	PASSED;
 }

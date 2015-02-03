@@ -258,8 +258,8 @@ int main( int argc, char *argv[] )
 #if VERBOSE > 0
 	output( "-----\n" );
 	output( "All test data destroyed\n" );
-	output( "Test PASSED\n" );
 #endif
+	output( "Test PASSED\n" );
 
 	PASSED;
 }

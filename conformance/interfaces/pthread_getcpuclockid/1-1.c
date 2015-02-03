@@ -61,6 +61,7 @@ int main()
                 exit(PTS_UNRESOLVED);
         }
 
+        printf("Test PASS\n");
 	return PTS_PASS;
 }
 

@@ -328,6 +328,7 @@ int main (int argc, char * argv[])
 	output("  %d signals were sent meanwhile.\n", count_sig);
 	#endif 
 	#endif	
+	printf("Test PASS\n");
 	PASSED;
 }
 

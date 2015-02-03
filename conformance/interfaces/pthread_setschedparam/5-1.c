@@ -341,6 +341,7 @@ int main ( int argc, char * argv[] )
 
 #endif
 #endif
+	printf("Test PASS\n");
 	PASSED;
 }
 
