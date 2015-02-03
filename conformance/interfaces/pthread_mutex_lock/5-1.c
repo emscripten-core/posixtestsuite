@@ -146,6 +146,11 @@ int main (int argc, char * argv[])
 	pthread_mutexattr_t ma[4], *pma[5];
 	pma[4]=NULL;
 
+#ifdef __EMSCRIPTEN__
+	printf("Test SKIPPED: signals are not supported in Emscripten.\n");
+	exit(0);
+#endif
+
 	output_init();
 
 	/* Initialize the mutex attributes */	
