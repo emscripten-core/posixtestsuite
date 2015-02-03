@@ -143,6 +143,7 @@ int main(int argc, char * argv[])
 	if (ret == 0)
 	{  FAILED("Unlocking an unlocked recursive mutex succeeded");  }
 
+	printf("Test PASS\n");
 	PASSED;
 }
 #else /* WITHOUT_XOPEN */
