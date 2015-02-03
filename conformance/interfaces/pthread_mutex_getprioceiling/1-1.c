@@ -18,6 +18,7 @@
 #include <pthread.h>
 #include <stdio.h>
 #include <sched.h>
+#include <stdlib.h>
 #include "posixtest.h"
 
 int main()
@@ -31,7 +32,12 @@ int main()
 
 	pthread_mutex_t mutex;
 	int prioceiling, max_prio, min_prio;
-	
+
+#ifdef __EMSCRIPTEN__
+	printf("Test SKIPPED: Emscripten does not support pthread_mutex_getprioceiling.\n");
+	exit(0);
+#endif
+
 	/* Initialize a mutex object */
 	if(pthread_mutex_init(&mutex, NULL) != 0)
 	{
