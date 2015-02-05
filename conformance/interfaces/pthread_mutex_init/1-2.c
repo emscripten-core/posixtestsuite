@@ -173,6 +173,11 @@ int main(int argc, char *argv[])
 	void * th_ret;
 	
 	int i;
+
+#ifdef __EMSCRIPTEN__
+	printf("Test SKIPPED: semaphores are not currently supported (TODO).\n");
+	exit(0);
+#endif
 	
 	output_init();
 	

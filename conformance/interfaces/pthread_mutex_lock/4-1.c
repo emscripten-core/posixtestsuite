@@ -145,6 +145,11 @@ int main(int argc, char * argv[])
 
 	output_init();
 
+#ifdef __EMSCRIPTEN__
+	printf("Test SKIPPED: semaphores are not currently supported (TODO).\n");
+	exit(0);
+#endif
+
 	#if VERBOSE >1
 	output("Initialize the PTHREAD_MUTEX_RECURSIVE mutex\n");
 	#endif

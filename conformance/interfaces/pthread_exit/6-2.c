@@ -85,7 +85,17 @@
 /********************************************************************************************/
 
 /* main is defined in the next file */
+#ifdef __EMSCRIPTEN__
+int main()
+{
+#ifdef __EMSCRIPTEN__
+  printf("Test SKIPPED: semaphores are not currently supported (TODO).\n");
+  exit(0);
+#endif
+}
+#else
 #define STD_MAIN
+#endif
 #include "threads_scenarii.c"
 
 /* This file will define the following objects:
