@@ -35,8 +35,8 @@
 # define INMAIN 1	/* Control going to or is already for Main */
 # define TIMEOUT 10	/* Time out time in seconds */
 
-int sem1;		/* Manual semaphore */
-int cleanup_flag;	/* Flag to indicate the thread's cleanup handler was called */
+volatile int sem1;		/* Manual semaphore */
+volatile int cleanup_flag;	/* Flag to indicate the thread's cleanup handler was called */
 pthread_mutex_t	mutex = PTHREAD_MUTEX_INITIALIZER;	/* Mutex */
 
 
