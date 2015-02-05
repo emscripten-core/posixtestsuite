@@ -140,6 +140,11 @@ int main (int argc, char *argv[])
 	
 	testdata_t td_parent, td_thread;
 	
+#ifdef __EMSCRIPTEN__
+	printf("Test SKIPPED: signals are not supported in Emscripten.\n");
+	exit(0);
+#endif
+
 	/* Initialize output routine */
 	output_init();
 	

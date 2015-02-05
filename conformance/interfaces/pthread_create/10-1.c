@@ -48,6 +48,7 @@
 #include <unistd.h>
 #include <signal.h>
 #include <errno.h>
+#include <stdlib.h>
 #include "posixtest.h"
 
 int created_thread;	/* Flag indicating that the thread start routine was reached, and
@@ -95,6 +96,11 @@ int main()
 	pthread_t new_th;
 	pthread_attr_t inv_attr;
 	struct sigaction act;
+
+#ifdef __EMSCRIPTEN__
+	printf("Test SKIPPED: signals are not supported in Emscripten.\n");
+	exit(0);
+#endif
 
 	/* Inializing flags. */
 	segfault_flag = 1;

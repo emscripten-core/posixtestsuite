@@ -23,6 +23,7 @@
 #include <pthread.h>
 #include <stdio.h>
 #include <signal.h>
+#include <stdlib.h>
 #include "posixtest.h"
 
 sigset_t th_pendingset, th_sigmask; 
@@ -47,6 +48,11 @@ int main()
 	pthread_t new_th;	
 	sigset_t main_sigmask, main_pendingset;
 	int ret;
+
+#ifdef __EMSCRIPTEN__
+	printf("Test SKIPPED: signals are not supported in Emscripten.\n");
+	exit(0);
+#endif
 
 	/* Empty set of signal mask and blocked signals */
 	if ( (sigemptyset(&main_sigmask) != 0) || 
