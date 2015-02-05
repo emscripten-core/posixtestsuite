@@ -29,8 +29,8 @@ struct testdata
 
 pthread_t  thread[THREAD_NUM];
 
-int start_num = 0;
-int waken_num = 0;
+volatile int start_num = 0;
+volatile int waken_num = 0;
 
 /* Alarm handler */
 void alarm_handler(int signo)
@@ -142,7 +142,7 @@ int main()
 			fprintf(stderr,"Main failed to signal the condition\n");
 			exit(PTS_UNRESOLVED);
 		}
-		usleep(100);
+		usleep(1000);
 	}		
 	
 	if (i >= THREAD_NUM) {
