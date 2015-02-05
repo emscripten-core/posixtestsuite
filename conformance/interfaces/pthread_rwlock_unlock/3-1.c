@@ -197,6 +197,11 @@ int main()
 	pthread_t writer1, reader, writer2;
 	int priority;
 
+#ifdef __EMSCRIPTEN__
+	printf("Test SKIPPED: musl/Emscripten does not support thread priorities, so cannot test rwlocking in priority order.\n");
+	exit(0);
+#endif
+
 	/* main thread needs to have the highest priority*/
 	priority = sched_get_priority_min(TRD_POLICY) + 3;
 	set_priority(pthread_self(), TRD_POLICY, priority);
