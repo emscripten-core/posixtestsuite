@@ -350,7 +350,10 @@ int main(int argc, char * argv[])
 		/** Join the thread */
 		ret = pthread_join(th, &rc);
 		if (ret != 0)  {  UNRESOLVED(ret, "Unable to join the thread");  }
-		if (rc != PTHREAD_CANCELED)  {  FAILED("thread was not canceled");  }
+		if (rc != PTHREAD_CANCELED)  {
+			output("thread was not canceled, return code was %d!=%d", rc, PTHREAD_CANCELED);
+			FAILED("thread was not canceled");
+		}
 		
 		#if VERBOSE > 1
 		output("Test passed for %s\n\n", scenar[i].descr);
@@ -376,6 +379,7 @@ int main(int argc, char * argv[])
 	ret = sem_destroy(&(data.semB));
 	if (ret != 0)  {  UNRESOLVED(errno, "Sem destroy failed");  }
 	
+	printf("Test PASS\n");
 	PASSED;
 }
 
