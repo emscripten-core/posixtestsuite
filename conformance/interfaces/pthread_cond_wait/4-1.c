@@ -307,6 +307,7 @@ int main (int argc, char * argv[])
 	#ifdef WITH_SYNCHRO
 	output("  %d signals were sent meanwhile.\n", count_sig);
 	#endif 
-	#endif	
+	#endif
+	printf("Test PASS\n");
 	PASSED;
 }
