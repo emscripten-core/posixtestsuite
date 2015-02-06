@@ -52,12 +52,12 @@ void *t1_func(void *arg)
 	if (rc == ETIMEDOUT) {
 		fprintf(stderr,"Thread1 stops waiting when time is out\n");
 		printf("Test PASSED\n");
-		exit(PTS_PASS);
+		pthread_exit(PTS_PASS);
 	}
 	else {
 		fprintf(stderr,"pthread_cond_timedwait return %d instead of ETIMEDOUT\n", rc);
                 printf("Test FAILED\n");
-		exit(PTS_FAIL);
+		pthread_exit(PTS_FAIL);
         }
 }
 
