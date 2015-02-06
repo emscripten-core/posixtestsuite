@@ -390,6 +390,7 @@ int main(int argc, char * argv[])
 	ret = sem_destroy(&(data.semB));
 	if (ret != 0)  {  UNRESOLVED(errno, "Sem destroy failed");  }
 	
+	printf("Test PASS\n");
 	PASSED;
 }
 

@@ -89,7 +89,11 @@
 #define VERBOSE 1
 #endif
 
+#ifdef __EMSCRIPTEN__
+#define NTHREADS (30)
+#else
 #define NTHREADS (100)
+#endif
 
 #ifndef WITHOUT_ALTCLK
 #define USE_ALTCLK  /* make tests with MONOTONIC CLOCK if supported */
@@ -358,6 +362,7 @@ int main(int argc, char * argv[])
 	} /* Proceed to next case */
 	
 	
+	printf("Test PASS\n");
 	PASSED;
 }
 
