@@ -7,6 +7,7 @@ SECTIONS:
 5. How to Contribute
 6. Who are you?
 7. Disclaimer
+8. Running Emscripten pthreads tests
 
 
 
@@ -120,3 +121,13 @@ Some like to say 'Nih!' from time to time ...
 The Open POSIX Test Suite is not affiliated with the IEEE or The Open Group.
 
 * POSIX (R) is a registered trademark of the IEEE
+
+8. Running Emscripten pthreads tests
+------------------------------------
+
+This github repository adds Emscripten testing harness for pthreads. To run the Emscripten pthreads tests, perform the following:
+
+1. Add directory posixtestsuite/emcc/ to PATH.
+2. Navigate to posixtestsuite/conformance/interfaces/ as the current directory.
+3. Make sure to close all existing instanced of Firefox tabs and processes, because the test runner will forcibly terminate browser processes during the run.
+4. Run 'run_all_tests.py'
