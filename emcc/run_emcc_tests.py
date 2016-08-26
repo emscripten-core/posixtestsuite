@@ -16,12 +16,16 @@ failures = []
 indeterminate = []
 skipped = []
 
+if not os.environ.get('EMSCRIPTEN_BROWSER'):
+  print >> sys.stderr, 'Please set EMSCRIPTEN_BROWSER environment variable to point to the target browser executable to run!'
+  sys.exit(1)
+
 for f in tests:
   out = f.replace('.c', '.html')
-  cmd = ['emcc', f, '-lpthread', '-Wno-format-security', '-s', 'TOTAL_MEMORY=268435456', '-s', 'PTHREAD_POOL_SIZE=40', '-o', out, '-I../../../include', '--emrun']
+  cmd = ['emcc', f, '-s', 'USE_PTHREADS=1', '-Wno-format-security', '-s', 'TOTAL_MEMORY=268435456', '-s', 'PTHREAD_POOL_SIZE=40', '-o', out, '-I../../../include', '--emrun']
   print ' '.join(cmd)
   subprocess.call(cmd)
-  cmd = ['emrun', '--kill_start', '--kill_exit', '--timeout=15', '--silence_timeout=15', '--browser=/Users/jjylanki/mozilla-inbound-2/obj-x86_64-apple-darwin14.0.0/dist/Nightly.app/Contents/MacOS/firefox', out]
+  cmd = ['emrun', '--kill_start', '--kill_exit', '--timeout=15', '--silence_timeout=15', '--browser='+os.getenv('EMSCRIPTEN_BROWSER'), '--safe_firefox_profile', out]
   #print ' '.join(cmd)
   proc = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
   (stdout, stderr) = proc.communicate()

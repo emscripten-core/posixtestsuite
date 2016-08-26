@@ -127,10 +127,7 @@ The Open POSIX Test Suite is not affiliated with the IEEE or The Open Group.
 
 This github repository adds Emscripten testing harness for pthreads. To run the Emscripten pthreads tests, perform the following:
 
-1. Adjust the Firefox Nightly pref dom.workers.maxPerDomain in about:config to at least 40 to allow that many simultaneous threads to run (some tests need it)
-2. Prepare Firefox Nightly prefs to be emrun-friendly by setting http://kripken.github.io/emscripten-site/docs/compiling/Running-html-files-with-emrun.html#running-web-pages-in-firefox
-3. Edit the file posixtestsuite/emcc/run_emcc_tests.py and configure the --browser=xx directive in the invocation of the 'emrun' cmd (line 24) to point to your pthreads-enabled Firefox Nightly build.
-4. Add directory posixtestsuite/emcc/ to PATH.
-5. Navigate to posixtestsuite/conformance/interfaces/ as the current directory.
-6. Make sure to close all existing instanced of Firefox tabs and processes, because the test runner will forcibly terminate browser processes during the run.
-7. Run 'run_all_tests.py'
+1. Set the environment EMSCRIPTEN_BROWSER to point to the executable of the target browser to run the test suite in.
+2. Close all existing instanced of Firefox tabs and processes, because the test runner will forcibly terminate browser processes during the run.
+3. Navigate to /path/to/posixtestsuite/conformance/interfaces/ as the current directory.
+4. Run '/path/to/posixtestsuite/emcc/run_all_tests.py'. This will run all the tests found in the subdirectories of the current working directory.
