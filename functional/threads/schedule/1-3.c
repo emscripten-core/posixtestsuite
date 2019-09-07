@@ -1,29 +1,26 @@
 /*
-* author: HongJunxin
-* 
-* 测试项：优先级反转    
-*
-* 测试步骤：
-* 1. 主线程初始化互斥量 mtx，使用优先级继承标志 PTHREAD_PRIO_INHERIT
-* 2. 主线程创建线程B，优先级1（最低）, 限制在 cpu 1 运行，使用调度策略 SCHED_FIFO，
-*    线程属性 PTHREAD_EXPLICIT_SCHED
-* 3. 主线程创建线程A，优先级7（最高）, 限制在 cpu 1 运行，使用调度策略 SCHED_FIFO，
-*    线程属性 PTHREAD_EXPLICIT_SCHED
-* 4. 主线程创建线程C，优先级3（居中）, 限制在 cpu 1 运行，使用调度策略 SCHED_FIFO，
-*    线程属性 PTHREAD_EXPLICIT_SCHED
-*
-* 5. 线程B获得互斥量mtx，然后进入while循环。
-* 6. 线程A请求获取互斥量mtx，进入阻塞状态。
-* 7. 线程C处于挂起状态，等待比它优先级高的线程运行结束。（如果线程B的优先级没有被提升，
-*    则线程C不需要等待高优先级但处于阻塞的线程A。因为线程B的优先级被提升了并且处于运行
-*    状态，所以此时线程等待的是线程B，但线程B释放了互斥量mtx，此时线程A运行，线程C又得
-*    等待线程A运行结束。）
-* 8. 线程B退出while循环，释放互斥量mtx。
-* 9. 线程A得到互斥量mtx，运行结束
-* 10. 线程C运行结束
-* 11. 线程B运行结束
-*
-*/
+ * Created by:  HongJunxin
+ * This file is licensed under the GPL license.  For the full content
+ * of this license, see the COPYING file at the top level of this
+ * source tree.
+ * 
+ * Test avoidance of prioriy reversal 
+ *
+ * Test steps:
+ * 1. Main initializes mutex mtx with PTHREAD_PRIO_INHERIT property
+ * 2. Main creates thread B using SCHED_FIFO, low priority.
+ * 3. Main creates thread A using SCHED_FIFO, high priority.
+ * 4. Main creates thread C using SCHED_FIFO, middle priority.
+ * 5. Thread A B C run in the same cpu
+ * 6. Thread B get mutex and then fall into while loop
+ * 7. Thread A acquire mutex and block on it.
+ * 8. Thread C is suspended waitting for thread B run done
+ * 9. Thread B quit while loop and release mutex
+ * 10. Thread A get mutex and then run done
+ * 11. Thread C run done
+ * 12. Thread B run done
+ */
+
 
 #define _GNU_SOURCE
 #include <pthread.h>
@@ -39,11 +36,15 @@
 #define TRD_POLICY 	SCHED_FIFO
 #define RUNNING		0
 #define RUN_DONE	1
+#define FALSE    	0
+#define TURE     	1
 
 static pthread_mutex_t mtx;
 static int is_thread_c_pause;
 static int a_thread_status;
 static int c_thread_status;
+
+static int single_cpu = FALSE;
 
 static int set_cpu_affinity(int cpu_no)
 {
@@ -65,7 +66,8 @@ static void *fn_a(void *arg)
 	int s;
 
 	a_thread_status = RUNNING;
-	set_cpu_affinity(1);
+	if (single_cpu == FALSE)
+		set_cpu_affinity(1);
 	
 	printf("[Thread A] acquires mutex\n");
 	s = pthread_mutex_lock(&mtx); 
@@ -88,7 +90,8 @@ static void *fn_b(void *arg)
 {
 	int s;
 	
-	set_cpu_affinity(1);
+	if (single_cpu == FALSE)
+		set_cpu_affinity(1);
 	
 	printf("[Thread B] acquires mutex\n");
 	s = pthread_mutex_lock(&mtx); 
@@ -98,11 +101,10 @@ static void *fn_b(void *arg)
 	}
 	
 	while (is_thread_c_pause);
-	
-	/* 线程A（优先级最高）因等待mutex而处于阻塞状态，如果线程B（优先级最低）的优先级
-	   没有被提升，则线程C（优先级居中）早就已经运行完毕。但因为线程B发生了优先级
-	   提升，而已一直处于运行状态，所以在这个点线程C应该是处于挂起状态，因为这三者使
-	   用的调用策略是SCHED_FIFO */
+	   
+	/* If the priority of thread B didn't be raised, thread C (with middle priority)
+  	   run done already. Because the priority of thread B has been raised (higher than C)
+	   and it is running, so in this time point thread C should be in suspended. */   
 	if (c_thread_status == RUN_DONE) {
 		printf("Test FAILED. Thread C shouldn't run done, because thread B"
 			   " has higher priority than it now and still in running.\n");
@@ -122,10 +124,11 @@ static void *fn_c(void *arg)
 {
 	int s;
 
+	if (single_cpu == FALSE)
+		set_cpu_affinity(1);
+
 	c_thread_status = RUNNING;
 	printf("[Thread C] running...\n");
-
-	set_cpu_affinity(1);
 
 	c_thread_status = RUN_DONE;
 	printf("[Thread C] run done\n");
@@ -150,9 +153,8 @@ static void create_thread(pthread_t *tid, int priority, void *(*fn)(void *))
 		exit(PTS_FAIL);		
 	}
 	
-	/* PTHREAD_EXPLICIT_SCHED 需要 root 权限。默认是 PTHREAD_INHERIT_SCHED，
-       这个会导致新建的线程继承主线程的属性，从而导致自己对新线程设置的优先级
-	   和调度策略无效。*/
+	/* PTHREAD_EXPLICIT_SCHED need root. Default is PTHREAD_INHERIT_SCHED which 
+	   make child thread inherit parent attribute. */
 	if (pthread_attr_setinheritsched(&attr, PTHREAD_EXPLICIT_SCHED) != 0) {
 		printf("Test FAILED. Error at pthread_attr_setinheritsched()\n");
 		exit(PTS_UNRESOLVED);
@@ -193,7 +195,7 @@ static void init_mutex(pthread_mutex_t *mutex)
 		exit(PTS_FAIL);	
 	}
 
-	/* 如果将 PTHREAD_PRIO_INHERIT 改为 PTHREAD_PRIO_NONE，该测试将不通过。 */
+	/* mutex protocol should be set to PTHREAD_PRIO_INHERIT */
 	ret = pthread_mutexattr_setprotocol(&mta, PTHREAD_PRIO_INHERIT);
 	if (ret != 0) {
 		printf("Error at pthread_mutexattr_setprotocol()\n");
@@ -216,7 +218,12 @@ int main()
 {		
 	int priority;
 	int policy;
-	pthread_t a_thread, b_thread, c_thread;
+	int cpu_num;
+	pthread_t a_thread, b_thread, c_thread;    
+    
+    cpu_num = sysconf(_SC_NPROCESSORS_CONF);
+    if (cpu_num == 1)
+        single_cpu = TURE;
 	
 	init_mutex(&mtx);
 	
