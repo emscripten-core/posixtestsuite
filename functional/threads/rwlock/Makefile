@@ -1,15 +1,28 @@
 # Copyright (c) 2004, Intel Corporation. All rights reserved.
-# Created by:  adam.li@intel.com
+# Created by:  HongJunxin
 # This file is licensed under the GPL license.  For the full content
 # of this license, see the COPYING file at the top level of this
 # source tree.
 
-CFLAGS := -Wall -I../../../include -O2
-LDFLAGS := -lpthread -lrt
+INCLUDE = -Wall -I../../../include
 
-TARGETS := 1-1
+CFLAGS =
 
-all: $(TARGETS)
+LDFLAGS = -lpthread
 
+SRC = $(wildcard *.c)
+OBJ = $(SRC:%.c=%.test)
+
+all: do_compile
+
+do_compile: $(OBJ)
+
+%.test: %.c
+	$(CC) $(CFLAGS) $(INCLUDE) $< -o $@ $(LDFLAGS)
+	
 clean:
-	rm -f $(TARGETS)
+	@rm -f $(OBJ)
+
+	@if test -z "$(CC)"; then \
+		CC=gcc; \
+	fi	
