@@ -23,6 +23,7 @@
 #include <unistd.h>
 #include <string.h>
 #include <stdlib.h>
+#include <signal.h>
 #include "posixtest.h"
 
 #define TEST "13-1"

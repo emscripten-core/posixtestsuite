@@ -24,6 +24,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <time.h>
+#include <signal.h>
 #include "posixtest.h"
 
 #define TEST "18-1"

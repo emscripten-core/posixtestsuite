@@ -10,7 +10,7 @@
    char *strptime(const char *, const char *, struct tm *);
   is declared.
   */
-
+#define _XOPEN_SOURCE
 #include <time.h>
 
 typedef char *(*strptime_test)(const char *, const char *, struct tm *);

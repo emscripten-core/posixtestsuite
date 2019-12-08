@@ -9,5 +9,6 @@
   */
 
 #include <sys/types.h>
+#include <time.h>
 
 clock_t dummy;
