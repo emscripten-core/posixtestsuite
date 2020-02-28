@@ -26,8 +26,8 @@
 #include <signal.h>
 #include "posixtest.h"
 
-void *a_thread_function();
-void alarm_handler();
+void *a_thread_function(void* arg);
+void alarm_handler(int);
 
 pthread_t a;
 
@@ -62,7 +62,7 @@ int main()
 }
 
 /* A never-ending thread function */
-void *a_thread_function()
+void *a_thread_function(void* arg)
 {
 	pthread_setcancelstate(PTHREAD_CANCEL_ENABLE, NULL);
 	
@@ -74,7 +74,7 @@ void *a_thread_function()
 }
 
 /* If this handler is called, that means that the test has failed. */
-void alarm_handler()
+void alarm_handler(int unused)
 {
 	printf("Test FAILED\n");
 	exit(PTS_FAIL);

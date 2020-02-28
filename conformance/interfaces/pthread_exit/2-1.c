@@ -54,7 +54,7 @@ void a_cleanup_func3(void *dummy)
 	return;
 }
 /* Thread's function. */
-void *a_thread_func()
+void *a_thread_func(void* arg)
 {
 	/* Set up 3 cleanup handlers */
 	pthread_cleanup_push(a_cleanup_func1,NULL);

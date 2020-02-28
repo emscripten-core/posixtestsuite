@@ -21,7 +21,7 @@
 #include <stdio.h>
 #include "posixtest.h"
 
-void *a_thread_func();
+void *a_thread_func(void* arg);
 
 pthread_t self_th; 	/* Save the value of the function call pthread_self() 
 			   within the thread.  Keeping it global so 'main' can 
@@ -59,7 +59,7 @@ int main()
 }
 
 /* The thread function that calls pthread_self() to obtain its thread ID */
-void *a_thread_func()
+void *a_thread_func(void* arg)
 {
 	self_th=pthread_self();
 	pthread_exit(0);

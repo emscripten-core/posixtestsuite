@@ -37,7 +37,7 @@ pthread_mutexattr_t mta;
 
 int ret;			/* Return value of the thread unlocking the mutex. */
 
-void *a_thread_func()
+void *a_thread_func(void* arg)
 {
 	/* Try to unlock the mutex that main already locked. */
 	ret=pthread_mutex_unlock(&mutex);

@@ -27,15 +27,31 @@
 #define FUNCTION "pthread_getcpuclockid"
 #define ERROR_PREFIX "unexpected error: " FUNCTION " " TEST ": "
 
-void *thread_func()
+#ifdef __EMSCRIPTEN__
+int should_fail;
+int _rc;
+#endif
+
+void *thread_func(void* arg)
 {
 	int rc;
 	clockid_t cid;
 
 	rc = pthread_getcpuclockid(pthread_self(), &cid); 
-        if (rc !=0 ) {
+        int expected_rc = 0;
+#ifdef __EMSCRIPTEN__
+        // Emscripten doesn't support pthread_getcpuclockid() function
+        // Specification says that ENOENT should be return in such case
+        expected_rc = ENOENT;
+#endif
+        if (rc != expected_rc ) {
+#ifdef __EMSCRIPTEN__
+                should_fail = 1;
+                _rc = rc;
+#else
                 perror(ERROR_PREFIX "pthread_getcpuclockid");
                 exit(PTS_FAIL);
+#endif
         }
 	printf("clock id of new thread is %d\n", cid);
 
@@ -60,6 +76,14 @@ int main()
                 perror(ERROR_PREFIX "pthread_join");
                 exit(PTS_UNRESOLVED);
         }
+
+#ifdef __EMSCRIPTEN__
+        if(should_fail) {
+                errno = _rc;
+                perror(ERROR_PREFIX "pthread_getcpuclockid");
+                exit(PTS_FAIL);
+        }
+#endif
 
         printf("Test PASS\n");
 	return PTS_PASS;

@@ -28,7 +28,7 @@
 
 volatile int thread_created = 0;
 
-void *thread_func()
+void *thread_func(void* arg)
 {
 	thread_created = 1;
 	pthread_exit(0);

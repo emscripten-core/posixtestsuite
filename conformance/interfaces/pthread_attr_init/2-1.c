@@ -33,7 +33,7 @@
 
 int sem1;		/* Manual semaphore */
 
-void *a_thread_func()
+void *a_thread_func(void* arg)
 {
 	
 	/* Indicate to main() that the thread was created. */

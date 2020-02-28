@@ -60,7 +60,7 @@ void a_cleanup_func(void *unused)
  * function can be called is when the thread is canceled and all the cleanup
  * functions are supposed to be popped. 
  */
-void *a_thread_func()
+void *a_thread_func(void* arg)
 {
 	int rc = 0;
 

@@ -21,7 +21,7 @@
 #include "posixtest.h"
 
 int sem; 		/* Manual semaphore */
-void *a_thread_func()
+void *a_thread_func(void* arg)
 {
 	pthread_setcanceltype(PTHREAD_CANCEL_ASYNCHRONOUS, NULL);
 	

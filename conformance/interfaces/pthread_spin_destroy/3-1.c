@@ -48,7 +48,10 @@ static void* fn_chld(void *arg)
 		printf("child: got return code %d, %s\n", rc, strerror(rc));	
 		printf("Test PASSED: *Note: Did not return EBUSY when destroying a spinlock already in use, but standard says 'may' fail\n");
 	}
+#ifndef __EMSCRIPTEN__
 	exit(PTS_PASS);
+#endif
+	return NULL;
 }
  
 int main()
