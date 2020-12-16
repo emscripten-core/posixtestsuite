@@ -194,11 +194,6 @@ int main (int argc, char *argv[])
 	pthread_t child;
 	
 	mf =sysconf(_SC_MAPPED_FILES);
-
-#ifdef __EMSCRIPTEN__
-	printf("Test SKIPPED: lacking necessary mmap() support in Emscripten.\n");
-	exit(0);
-#endif
 	
 	output_init();
 	

@@ -37,11 +37,6 @@ int main()
 	pthread_mutexattr_t mta;
 	int prioceiling, ret;
 
-#ifdef __EMSCRIPTEN__
-	printf("Test SKIPPED: Emscripten does not support pthread_mutexattr_setprioceiling.\n");
-	exit(0);
-#endif
-
 	prioceiling = sched_get_priority_min(SCHED_FIFO);
 	
 	/* Set the prioceiling of an unintialized mutex attr. */

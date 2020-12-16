@@ -96,11 +96,6 @@ int main()
 	int rc = 0;
 	handler_called=0;
 
-#ifdef __EMSCRIPTEN__
-	printf("Test SKIPPED: signals are not supported in Emscripten.\n");
-	exit(0);
-#endif
-
 	if(pthread_rwlock_init(&rwlock, NULL) != 0)
 	{
 		printf("Error at pthread_rwlock_init()\n");

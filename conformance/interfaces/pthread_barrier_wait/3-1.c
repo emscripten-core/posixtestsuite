@@ -83,11 +83,6 @@ int main()
 	pthread_t child_thread;
 	sig_rcvd = 0;
 
-#ifdef __EMSCRIPTEN__
-	printf("Test SKIPPED: signals are not supported in Emscripten.\n");
-	exit(0);
-#endif
-
 	printf("Initialize barrier with count = 2\n");
 	if(pthread_barrier_init(&barrier, NULL, 2) != 0)
 	{

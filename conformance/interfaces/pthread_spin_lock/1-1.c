@@ -101,11 +101,6 @@ int main()
 	void *value_ptr;
 	struct sigaction sa;
 
-#ifdef __EMSCRIPTEN__
-	printf("Test SKIPPED: signals are not supported in Emscripten.\n");
-	exit(0);
-#endif
-
 	/* Block the SIGALRM signal for main thread */
 	sigemptyset (&sa.sa_mask);
 	sigaddset(&sa.sa_mask, SIGALRM);

@@ -79,10 +79,6 @@ int main()
 {
 	pthread_t new_th;
 
-#ifdef __EMSCRIPTEN__
-	printf("Test SKIPPED: signals are not supported in Emscripten.\n");
-	exit(0);
-#endif
 	sem1=INTHREAD;
 
 	if(pthread_create(&new_th, NULL, a_thread_func, NULL) != 0)

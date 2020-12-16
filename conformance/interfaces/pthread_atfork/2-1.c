@@ -31,11 +31,6 @@ int main ()
 	pid_t pid;
 	int ret;
 
-#ifdef __EMSCRIPTEN__
-	printf("Test SKIPPED: multiple processes and fork() is not supported in Emscripten.\n");
-	exit(0);
-#endif
-
 	/* Set up the fork handlers */
 	ret = pthread_atfork(NULL, NULL, NULL);
 	if(ret != 0)

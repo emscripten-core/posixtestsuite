@@ -290,11 +290,6 @@ int main (int argc, char * argv[])
 	
 	output_init();
 
-#ifdef __EMSCRIPTEN__
-	printf("Test SKIPPED: signals are not supported in Emscripten.\n");
-	exit(0);
-#endif
-
 	#ifdef WITH_SYNCHRO
 	#if VERBOSE >1
 	output("Running in synchronized mode\n");

@@ -35,11 +35,6 @@ int main()
 	pthread_mutexattr_t mta;
 	int max_prio, min_prio, i;
 
-#ifdef __EMSCRIPTEN__
-	printf("Test SKIPPED: Emscripten does not support pthread_mutexattr_setprioceiling.\n");
-	exit(0);
-#endif
-
 	/* Initialize a mutex attributes object */
 	if(pthread_mutexattr_init(&mta) != 0)
 	{
