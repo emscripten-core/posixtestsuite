@@ -156,11 +156,6 @@ int main (int argc, char *argv[])
 	pthread_t child;
 	int i;
 
-#ifdef __EMSCRIPTEN__
-	printf("Test SKIPPED: semaphores are not currently supported (TODO).\n");
-	exit(0);
-#endif
-
 	output_init();
 	
 	td.tid=pthread_self();

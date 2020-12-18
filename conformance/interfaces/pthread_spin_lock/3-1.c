@@ -38,11 +38,6 @@ int main()
 	pthread_spinlock_t spinlock;
 	struct sigaction act;
 
-#ifdef __EMSCRIPTEN__
-	printf("Test SKIPPED: signals are not supported in Emscripten.\n");
-	exit(0);
-#endif
-
 	/* Set up child thread to handle SIGALRM */
 	act.sa_flags = 0;
 	act.sa_handler = sig_handler;

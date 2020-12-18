@@ -238,11 +238,6 @@ int main (int argc, char * argv[])
 	pthread_t th_work, th_sig1, th_sig2;
 	thestruct arg1, arg2;
 
-#ifdef __EMSCRIPTEN__
-	printf("Test SKIPPED: signals are not supported in Emscripten.\n");
-	exit(0);
-#endif
-
 	output_init();
 
 	#ifdef WITH_SYNCHRO

@@ -287,11 +287,6 @@ int main (int argc, char * argv[])
 	pthread_attr_t ta;
 	
 	testdata_t alternativ;
-
-#ifdef __EMSCRIPTEN__
-	printf("Test SKIPPED: lacking necessary mmap() support in Emscripten.\n");
-	exit(0);
-#endif
 	
 	output_init();
 	

@@ -58,10 +58,6 @@ static void child_handler()
 
 int main ()
 {
-#ifdef __EMSCRIPTEN__
-	printf("Test SKIPPED: multiple processes and fork() is not supported in Emscripten.\n");
-	exit(0);
-#endif
 	pid_t pid;
 
 	/* Initialize values */

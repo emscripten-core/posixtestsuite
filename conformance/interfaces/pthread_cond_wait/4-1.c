@@ -235,11 +235,6 @@ int main (int argc, char * argv[])
 	thestruct arg1, arg2;
 	struct sigaction sa;
 
-#ifdef __EMSCRIPTEN__
-	printf("Test SKIPPED: signals are not supported in Emscripten.\n");
-	exit(0);
-#endif
-
 	output_init();
 	
 	/* We need to register the signal handlers for the PROCESS */

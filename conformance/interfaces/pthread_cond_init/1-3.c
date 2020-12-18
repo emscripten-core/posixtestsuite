@@ -853,11 +853,6 @@ int main(int argc, char * argv[])
 	long opt_TPS, opt_MF;
 	int ret=0;
 
-#ifdef __EMSCRIPTEN__
-	printf("Test SKIPPED: lacking necessary mmap() support in Emscripten.\n");
-	exit(0);
-#endif
-
 	output_init();
 	
 	#if VERBOSE > 1

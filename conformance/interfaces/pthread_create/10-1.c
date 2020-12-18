@@ -97,11 +97,6 @@ int main()
 	pthread_attr_t inv_attr;
 	struct sigaction act;
 
-#ifdef __EMSCRIPTEN__
-	printf("Test SKIPPED: signals are not supported in Emscripten.\n");
-	exit(0);
-#endif
-
 	/* Inializing flags. */
 	segfault_flag = 1;
 	created_thread = 0;

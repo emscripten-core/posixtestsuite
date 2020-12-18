@@ -86,15 +86,7 @@
 /***********************************    Test cases  *****************************************/
 /********************************************************************************************/
 
-#ifdef __EMSCRIPTEN__
-int main()
-{
-  printf("Test SKIPPED: semaphores are not currently supported (TODO).\n");
-  exit(0);
-}
-#else
 #define STD_MAIN
-#endif
 #include "threads_scenarii.c"
 
 /* This file will define the following objects:

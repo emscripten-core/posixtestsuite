@@ -609,11 +609,6 @@ int main(int argc, char * argv[])
 	long opt_TMR, opt_CS;
 	int ret=0;
 
-#ifdef __EMSCRIPTEN__
-	printf("Test SKIPPED: clock_settime() is not supported in Emscripten.\n");
-	exit(0);
-#endif
-
 	output_init();
 	
 	#if VERBOSE > 1

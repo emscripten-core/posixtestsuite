@@ -44,12 +44,6 @@ int main()
 	pthread_mutex_t mutex;
 	pthread_mutexattr_t mta;
 	int ret;
-
-#ifdef __EMSCRIPTEN__
-	printf("Test SKIPPED: Emscripten does not support interrupting pthread_mutex_lock wait via a SIGALRM.\n");
-	exit(0);
-#endif
-
 	/* Initialize a mutex attributes object */
 	if(pthread_mutexattr_init(&mta) != 0)
 	{
