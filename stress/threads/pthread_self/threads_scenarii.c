@@ -182,10 +182,12 @@ void scenar_init()
 	#endif
 	
 	
+#ifndef __EMSCRIPTEN__
 	if (minstacksize % pagesize)
 	{
 		UNTESTED("The min stack size is not a multiple of the page size");
 	}
+#endif
 	
 	for (i=0; i<NSCENAR; i++)
 	{
