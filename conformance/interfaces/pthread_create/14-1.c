@@ -78,10 +78,13 @@
 /********************************** Configuration ******************************************/
 /********************************************************************************************/
 #ifndef VERBOSE
-#define VERBOSE 1
+#define VERBOSE 5
 #endif
 
+#ifndef __EMSCRIPTEN__
+// See https://github.com/emscripten-core/emscripten/issues/14892
 #define WITH_SYNCHRO
+#endif
 
 
 /********************************************************************************************/
