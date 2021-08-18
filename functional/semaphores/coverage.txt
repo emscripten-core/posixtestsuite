@@ -6,3 +6,5 @@ Assertion	Covered?
 3		YES	
 4	        YES	
 5		YES	
+6		YES
+7		YES

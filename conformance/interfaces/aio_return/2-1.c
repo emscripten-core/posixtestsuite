@@ -28,6 +28,8 @@
 #include <stdlib.h>
 #include <aio.h>
 
+#include <signal.h>
+#include <fcntl.h>
 #include "posixtest.h"
 
 #define TNAME "aio_return/2-1.c"

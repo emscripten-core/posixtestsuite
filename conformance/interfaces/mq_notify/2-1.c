@@ -24,6 +24,8 @@
 #include <sys/types.h>
 #include <sys/wait.h>
 #include <unistd.h>
+#include <signal.h>
+#include <fcntl.h>
 #include "posixtest.h"
 
 #define TEST "2-1"

@@ -38,6 +38,7 @@
 #include <stdlib.h>
 #include <malloc.h>
 #include <aio.h>
+#include <signal.h>
 
 #include "posixtest.h"
 
