@@ -24,7 +24,7 @@
 #include "posixtest.h"
 
 
-void *a_thread_func()
+void *a_thread_func(void* arg)
 {
 	
 	pthread_setcanceltype(PTHREAD_CANCEL_ASYNCHRONOUS, NULL);

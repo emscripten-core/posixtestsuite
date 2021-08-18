@@ -47,7 +47,7 @@ void an_init_func()
 }
 
 /* Thread function */
-void *a_thread_func()
+void *a_thread_func(void* arg)
 {
 	/* Make the thread cancelable immediately */
 	pthread_setcanceltype(PTHREAD_CANCEL_ASYNCHRONOUS, NULL);

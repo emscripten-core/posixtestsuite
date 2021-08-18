@@ -30,7 +30,7 @@ int sem1;		/* Manual semaphore */
 int cancel_flag;
 
 /* Function that the thread executes upon its creation */
-void *a_thread_func()
+void *a_thread_func(void* arg)
 {
 	/* Set default cancel state should be ENABLE, meaning it should honor all 
 	 * cancel requests. */

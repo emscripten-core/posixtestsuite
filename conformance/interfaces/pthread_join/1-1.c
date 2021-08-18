@@ -24,7 +24,7 @@
 int end_exec;	/* Global flag indicating the the thread function has finished execution. */
 
 /* Thread's function. */
-void *a_thread_func()
+void *a_thread_func(void* arg)
 {
 	int i;
 	

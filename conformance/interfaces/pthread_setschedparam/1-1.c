@@ -13,7 +13,7 @@
 #include <stdlib.h>
 #include "posixtest.h"
 
-void *a_thread_func()
+void *a_thread_func(void* arg)
 {
 	struct sched_param sparam;
 	int policy, priority, policy_1;

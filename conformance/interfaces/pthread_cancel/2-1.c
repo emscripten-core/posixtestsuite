@@ -40,7 +40,7 @@ void a_cleanup_func(void *unused)
  * loop, never reaching the cleanup_pop function.  So the only way the cleanup
  * function can be called is when the thread is canceled and all the cleanup
  * functions are supposed to be popped. */
-void *a_thread_func()
+void *a_thread_func(void* arg)
 {
 	/* To enable thread immediate cancelation, since the default
 	 * is PTHREAD_CANCEL_DEFERRED. */

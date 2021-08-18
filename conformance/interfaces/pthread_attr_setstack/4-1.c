@@ -37,7 +37,7 @@ size_t stack_size;
 int teststack() {
 	return 0;
 }
-void *thread_func()
+void *thread_func(void* arg)
 {
 	/* execute a function to test the read/right of the stack*/
 	if (teststack() != 0) {

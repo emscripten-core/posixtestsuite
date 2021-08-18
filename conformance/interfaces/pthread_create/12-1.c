@@ -20,7 +20,7 @@
 #include "posixtest.h"
 
 /* Thread starting routine that really does nothing. */
-void *a_thread_func()
+void *a_thread_func(void* arg)
 {
 	pthread_exit(0);
 	return NULL;
