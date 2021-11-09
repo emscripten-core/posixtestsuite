@@ -114,13 +114,13 @@ void * deadlk_issue(void * arg)
 	{ UNRESOLVED(ret, "Set cancel type in deadlk_issue"); }
 	if ((ret = pthread_setcancelstate(PTHREAD_CANCEL_ENABLE, &tmp)))
 	{ UNRESOLVED(ret, "Set cancel state in deadlk_issue"); }
+    	returned = 0;
 	#if VERBOSE >1
 	output("Thread releases the semaphore...\n");
 	#endif
 	if ((ret = sem_post(&semA)))
 	{ UNRESOLVED(errno, "Sem_post in deadlk_issue"); }
     
-    	returned = 0;
 	retval = pthread_mutex_lock(p_mtx);
 	returned = 1;
 
