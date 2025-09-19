@@ -53,6 +53,10 @@
  #include <stdio.h>
  #include <stdarg.h>
  #include <stdlib.h>
+
+#ifdef __EMSCRIPTEN__
+#include <emscripten.h>
+#endif
  
 /********************************************************************************************/
 /******************************   Test framework   *****************************************/
@@ -126,6 +130,14 @@ void * sendsig (void * arg)
 
 		if ((ret = pthread_kill (*(thearg->thr), thearg->sig)))
 		{ UNRESOLVED(ret, "Pthread_kill in sendsig"); }
+
+#ifdef __EMSCRIPTEN__
+		// Throttle this loop so it won't spam a large number of pthread_kill()
+		// events over to the main thread. Each pthread_kill() needs to allocate
+		// memory, which will run in an OOM on a fast CPU, before the main thread
+		// might be able to react.
+		EM_ASM(Atomics.wait(HEAP32, 0, HEAP32[0], 1));
+#endif
 		
 	}
 	
