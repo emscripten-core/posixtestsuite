@@ -232,6 +232,14 @@ void * test( void * arg )
 			UNRESOLVED( ret, "pthread_self returned an unexpected error" );
 		}
 
+#ifdef __EMSCRIPTEN__
+		// Throttle this loop so it won't spam a large number of pthread_cancel()
+		// events over to the main thread. Each pthread_cancel() needs to allocate
+		// memory, which will run in an OOM on a fast CPU, before the main thread
+		// might be able to react.
+		EM_ASM(Atomics.wait(HEAP32, 0, HEAP32[0], 1));
+#endif
+
 	}
 
 
