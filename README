@@ -126,6 +126,6 @@ The Open POSIX Test Suite is not affiliated with the IEEE or The Open Group.
 ------------------------------------
 
 This repository adds some emscripten-specific patches.  Emscripten contains this
-repo as subproject under `test/third_party/posixtest/. To run this test suite
+repo as a subproject under `test/third_party/posixtest/. To run this test suite
 under emscripten run the `./test/runner posixtest` command from within and
 emscripten checks.
