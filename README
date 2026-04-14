@@ -125,9 +125,7 @@ The Open POSIX Test Suite is not affiliated with the IEEE or The Open Group.
 8. Running Emscripten pthreads tests
 ------------------------------------
 
-This github repository adds Emscripten testing harness for pthreads. To run the Emscripten pthreads tests, perform the following:
-
-1. Set the environment EMSCRIPTEN_BROWSER to point to the executable of the target browser to run the test suite in.
-2. Close all existing instanced of Firefox tabs and processes, because the test runner will forcibly terminate browser processes during the run.
-3. Navigate to /path/to/posixtestsuite/conformance/interfaces/ as the current directory.
-4. Run '/path/to/posixtestsuite/emcc/run_all_tests.py'. This will run all the tests found in the subdirectories of the current working directory.
+This repository adds some emscripten-specific patches.  Emscripten contains this
+repo as subproject under `test/third_party/posixtest/. To run this test suite
+under emscripten run the `./test/runner posixtest` command from within and
+emscripten checks.
