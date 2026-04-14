@@ -146,12 +146,21 @@ int main()
 		exit(PTS_FAIL);
 	}
 	
+#ifndef __EMSCRIPTEN__
+	// The assertion here that the cleanup function should not be run before
+	// pthread_cancel returns seems wrong.  I've seen this fail in emscripten since
+	// the cancelation signal can be received and acted upon by the receiver
+	// before `pthread_cancel` returns.
+	// On an SMP system with more than one core setting the main thread priority
+	// to `MAIN_PRIORITY` does not prevent the child thread (running on a separate
+	// core) from performing the cleanup functions before `pthread_cancel` returns.
 	diff = cleanup_time.tv_sec - main_time.tv_sec;
 	diff += (double)(cleanup_time.tv_nsec - main_time.tv_nsec)/1000000000.0;
 	if(diff < 0) {
 		printf(ERROR_PREFIX "Cleanup function was called before main continued\n");
 		exit(PTS_FAIL);
 	}
+#endif
 	printf("Test PASS\n");
 	exit(PTS_PASS);	
 }
