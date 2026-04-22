@@ -242,6 +242,16 @@ void * test(void * arg)
 		
 		/* Change thread attribute for the next loop */
 		sc++;
+
+#ifdef __EMSCRIPTEN__
+		// XXX Emscripten: originally this test would spawn threads for one second,
+		// until main thread latches `do_it = 0;`. The threads would then loop the
+		// number of test cases. For Emscripten, since # of synchronously spawnable
+		// threads is a limited resource, do not allow runaway thread creation, but
+		// instead test each scenario exactly once.
+		if (sc >= NSCENAR) break;
+#endif
+
 		sc %= NSCENAR;
 	}
 	return NULL;
