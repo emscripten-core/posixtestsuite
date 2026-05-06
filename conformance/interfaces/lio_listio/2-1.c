@@ -27,6 +27,8 @@
 #include <stdlib.h>
 #include <aio.h>
 
+#include <signal.h>
+#include <fcntl.h>
 #include "posixtest.h"
 
 #define TNAME "lio_listio/2-1.c"

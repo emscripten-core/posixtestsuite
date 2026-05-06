@@ -27,6 +27,7 @@
 #include <string.h>
 #include <stdint.h>
 #include <stdlib.h>
+#include <signal.h>
 #include "posixtest.h"
 
 #define TEST "5-3"

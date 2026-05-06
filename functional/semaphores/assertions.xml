@@ -14,4 +14,10 @@ Using semaphore to implement philosopher problem
   <assertion id="5" tag="pt:SEM">
 Using semaphore to implement sleeping Barber problem 
   </assertion>
+  <assertion id="6" tag="pt:SEM">
+Test semaphore schedule policy based on priority
+  </assertion>
+  <assertion id="7" tag="pt:SEM">
+Test semaphore schedule policy based on waiting time
+  </assertion>  
 </assertions>
