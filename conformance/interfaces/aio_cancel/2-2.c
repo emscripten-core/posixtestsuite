@@ -41,7 +41,7 @@ int main()
 	char tmpfname[256];
 	int fd;
 
-#if _POSIX_ASYNCHRONOUS_IO != 200112L
+#if _POSIX_ASYNCHRONOUS_IO < 200112L
 	return PTS_UNSUPPORTED;
 #endif
 

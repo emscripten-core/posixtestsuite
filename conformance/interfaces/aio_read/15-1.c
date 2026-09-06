@@ -35,7 +35,7 @@ int main()
 	struct aiocb aiocb;
 	struct rlimit limit;
 
-#if _POSIX_ASYNCHRONOUS_IO != 200112L
+#if _POSIX_ASYNCHRONOUS_IO < 200112L
 	exit(PTS_UNSUPPORTED);
 #endif
 

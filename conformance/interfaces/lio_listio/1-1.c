@@ -65,7 +65,7 @@ int main()
 	int err;
 	int i;
 
-#if _POSIX_ASYNCHRONOUS_IO != 200112L
+#if _POSIX_ASYNCHRONOUS_IO < 200112L
 	exit(PTS_UNSUPPORTED);
 #endif
 
