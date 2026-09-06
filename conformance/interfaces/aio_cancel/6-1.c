@@ -55,7 +55,7 @@ int main()
 	int in_progress;
 	int gret;
 
-#if _POSIX_ASYNCHRONOUS_IO != 200112L
+#if _POSIX_ASYNCHRONOUS_IO < 200112L
 	return PTS_UNSUPPORTED;
 #endif
 

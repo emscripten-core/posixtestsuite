@@ -53,7 +53,7 @@ int main()
 	int in_progress;
 	static int check_one;
 
-#if _POSIX_ASYNCHRONOUS_IO != 200112L
+#if _POSIX_ASYNCHRONOUS_IO < 200112L
 	return PTS_UNSUPPORTED;
 #endif
 

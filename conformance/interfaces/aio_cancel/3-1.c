@@ -72,7 +72,7 @@ int main()
 	struct sigaction action;
 	int i;
 
-#if _POSIX_ASYNCHRONOUS_IO != 200112L
+#if _POSIX_ASYNCHRONOUS_IO < 200112L
 	return PTS_UNSUPPORTED;
 #endif
 
